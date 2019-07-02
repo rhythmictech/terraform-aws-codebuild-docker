@@ -151,10 +151,13 @@ resource "aws_codebuild_webhook" "github" {
       type                    = "EVENT"
       pattern                 = "PULL_REQUEST_CREATED"
     }
+
     filter {
       type                    = "EVENT"
       pattern                 = "PULL_REQUEST_UPDATED"
-    }filter {
+    }
+    
+    filter {
       type                    = "EVENT"
       pattern                 = "PULL_REQUEST_REOPENED"
     }
