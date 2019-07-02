@@ -116,9 +116,10 @@ resource "aws_codebuild_project" "rateco-builder" {
   }
 
   source {
-    type            = "GITHUB"
-    location        = "https://github.com/rateco/rateco.ca.git"
-    git_clone_depth = 1
+    type                = "GITHUB"
+    location            = "https://github.com/rateco/rateco.ca.git"
+    git_clone_depth     = 1
+    report_build_status = true
 
     auth {
       type = "OAUTH"
@@ -145,5 +146,12 @@ output "codebuild-badge" {
 
 resource "aws_codebuild_webhook" "github" {
   project_name = aws_codebuild_project.rateco-builder.name
+  filter_group {
+    filter {
+      type                    = "EVENT"
+      pattern                 = "PUSH"
+      exclude_matched_pattern = true
+    }
+  }
 }
 
