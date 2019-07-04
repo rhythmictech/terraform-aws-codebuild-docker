@@ -146,25 +146,5 @@ output "codebuild-badge" {
 
 resource "aws_codebuild_webhook" "github" {
   project_name = aws_codebuild_project.rateco-builder.name
-  filter_group {
-    filter {
-      type                    = "EVENT"
-      pattern                 = "PULL_REQUEST_CREATED"
-    }
-  }
-  
-  filter_group {
-    filter {
-      type                    = "EVENT"
-      pattern                 = "PULL_REQUEST_UPDATED"
-    }
-  }
-  
-  filter_group {
-    filter {
-      type                    = "EVENT"
-      pattern                 = "PULL_REQUEST_REOPENED"
-    }
-  }
 }
 
